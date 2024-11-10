@@ -12,6 +12,7 @@ $rotation_degrees = 0;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Randomly pick a value
     $selected_value = $wheel_values[array_rand($wheel_values)];
+    $_SESSION['spinMoney']=$selectedValue;
     // Random rotation degrees (e.g., full spin + random degree)
     $rotation_degrees = rand(720, 1080);  // Random spin degrees between 720 and 1080
 }
