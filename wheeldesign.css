@@ -1,0 +1,207 @@
+body{
+    background-image: url(neon-colour-illuminated-game-show-260nw-2276021853.jpg.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.container{
+    position: relative;
+}
+.dot {
+    height: 550px;
+    width: 550px;
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    left: 28%;
+    top: 50px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.7);
+  }
+  
+:where(.wheel-of-fortune) {
+    --_items: 13;
+    all: unset;
+    aspect-ratio: 1 / 1;
+    background: crimson;
+    container-type: inline-size;
+    direction: ltr;
+    display: grid;
+    place-content: center start;
+    height: 500px;
+    width: 500px;
+    position: absolute;
+    left: 30%;
+    top: 75px;
+}
+
+li {
+    align-content: center;
+    background: deepskyblue;
+    display: grid;
+    font-size: 30px;
+    font-weight: bold;
+    grid-area: 1 / -1;
+    list-style: none;
+    transform-origin: center right;
+    width: 250px;
+    text-align: center;
+}
+
+li {
+    &:nth-of-type(1) { --_idx: 1; }
+    &:nth-of-type(2) { --_idx: 2; }
+    &:nth-of-type(3) { --_idx: 3; }
+    &:nth-of-type(4) { --_idx: 4; }
+    &:nth-of-type(5) { --_idx: 5; }
+    &:nth-of-type(6) { --_idx: 6; }
+    &:nth-of-type(7) { --_idx: 7; }
+    &:nth-of-type(8) { --_idx: 8; }
+    &:nth-of-type(9) { --_idx: 9; }
+    &:nth-of-type(10) { --_idx: 10;}
+    &:nth-of-type(11) { --_idx: 11;}
+    &:nth-of-type(12) { --_idx: 12;}
+    &:nth-of-type(13) { --_idx: 13;}
+}
+
+li {
+    rotate: calc(360deg / var(--_items) * calc(var(--_idx) - 1));
+    background: hsl(calc(360deg / var(--_items) *
+    calc(var(--_idx))), 100%, 75%);
+    height: calc((2 * pi * 50cqi) / var(--_items));
+    clip-path: polygon(0% -2%, 100% 50%, 0% 102%);
+}
+
+.wheel-of-fortune {
+    clip-path: inset(0 0 0 0 round 50%);
+}
+  
+.black {
+    background-color: darkblue;
+    font-weight: bold;
+    color: white;
+}
+button {
+    aspect-ratio: 1 / 1;
+    background: green;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 15px;
+    place-self: center;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    left: 25px;
+    top: -180px
+} 
+.dot {
+    height: 550px;
+    width: 550px;
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+}
+.spin{
+    border-radius: 10px;
+    border: 3px solid white;
+    width: 200px;
+    height: 40px;
+    background-color: blueviolet;
+    position: relative;
+    left: 42%;
+    top: 70px;
+    font-weight: bold;
+    font-size: 15px;
+}
+.spin:hover{
+    color: lavender;
+}
+
+.dots {
+    height: 10px;
+    width: 10px;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 10px white;
+    position: relative;
+}
+.dot1{
+    top: -16px;
+    left: 50%;
+}
+.dot2{
+    top: -560px;
+    left: 50%;
+}
+.dot3{
+    top: -310px;
+    left: 362px;
+}
+.dot4{
+    top: -320px;
+    left: 885px;
+}
+.dot5{
+    top: -530px;
+    left: 432px;
+}
+.dot6{
+    top: -530px;
+    left: 830px;
+}
+.dot7{
+    top: -200px;
+    left: 440px;
+}
+.dot8{
+    top: -220px;
+    left: 810px;
+}
+.blink {
+    animation: blinker 3s ease-in-out infinite;
+
+}
+.blink1 {
+    animation: blinker 1s ease-in-out infinite;
+
+}
+.blink2 {
+    animation: blinker 2s ease-in-out infinite;
+
+}
+  
+@keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    bottom: 80px;
+    color: white;
+    transition-delay: 2s;
+}
+  
+form {
+    position: relative;
+    z-index: 10;
+}
+
+@keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
+
+.wheel-of-fortune{
+    animation: rotate 2s linear;
+}
