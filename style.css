@@ -1,0 +1,127 @@
+.letterBox {
+    z-index: 10;
+    position: absolute;
+    flex-wrap: nowrap;
+    margin: 0px;
+    max-width: 100%;
+    background-color: #02375a;
+}
+.letterBox > img {
+    flex-wrap: nowrap;
+    max-width: 2.6vw;
+}
+
+.topHalf {
+    display: flex;
+    justify-content: center;
+    
+}
+.bottomHalf {
+    display: grid;
+    margin-top: 5%;
+    grid-template-columns: auto auto auto auto auto;
+    max-width: 100% ;
+    justify-self: center;
+    align-self: center;
+}
+.bottomHalf >div {
+    max-width: 60%;
+    max-height: 50%;
+}
+.board {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 0px;
+    flex: 1 1 74%;
+}
+.leftSidebar {
+    justify-items: center;
+    text-align: center;
+    flex: 1 1 13%;
+    margin-top: 5%;
+}
+.rightSidebar {
+    flex: 1 1 13%;
+    margin-top: 5%;
+}
+.board > img {
+        max-width: 59.9vw;
+        height: auto;
+        border: 4px solid black;
+}
+.button-group {
+    flex-grow: 1;
+    margin: auto;
+  }
+  
+  .button-group input[type="radio"] {
+    display: none;
+  }
+  .selectButton{
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #2b426d;
+    background-color: #385c7e;
+    color: white;
+    border-radius: 15px;
+    text-align: center;
+    flex-grow: 1;
+    flex-basis: 0;
+    width: 90px;
+    font-size: 13px;
+    margin: 5px;
+    box-shadow: 0px 0px 50px -15px #000000;
+  }
+  
+  .button-group label {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #2b426d;
+    background-color: #385c7e;
+    color: white;
+    border-radius: 15px;
+    transition: all ease 0.2s;
+    text-align: center;
+    flex-grow: 1;
+    flex-basis: 0;
+    width: 90px;
+    font-size: 13px;
+    margin: 5px;
+    box-shadow: 0px 0px 50px -15px #000000;
+  }
+  
+  .button-group input[type="radio"]:checked + label {
+    background-color: white;
+    color: skyblue;
+    border: 1px solid #2b426d;
+  }
+  @keyframes clueDissapear {
+    0%{
+        background-color: white;
+      opacity: 0;
+    }
+    25%{
+        background-color: skyblue;
+        opacity: 0;
+    }
+    75%{
+      opacity:0;
+    }
+    100%{
+      opacity: 1;
+    }
+    
+  }
+  .dissapear {
+    opacity: 0;
+    animation-duration: 1s;
+    animation-name: clueDissapear;
+    animation-fill-mode: forwards;
+    z-index: 100;
+  }
+  
+
+  
