@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Wheel of Fortune!</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="home.js"></script>
+    </head>
+
+    <body class="homepage">
+
+        <!--Link to Leaderboard-->
+        <div>
+            <a href="leaderboard.html">
+                <img src="imgs/trophy.png" class="trophy" style="position: absolute; top: 20px; left: 20px; height: 65px; width: auto; cursor: pointer;">
+            </a>
+        </div>
+
+
+        <!--Wheel Img with animation-->
+        <div class="wheel-container">
+            <img src="imgs/wheeloffortune.png" class="wheel">
+        </div>
+
+
+        <!--Add Play and Rules Buttons-->
+        <div class="buttons-container">
+            <!--NEED TO ADD PAGE-->
+            <div class="button" onclick="navigateToPage('board.php')">
+                <p>Play</p>
+            </div>
+        
+            <!--NEED TO ADD PAGE-->
+            <div class="button" onclick="navigateToPage('rules.html')">
+                <p>Rules</p>
+            </div>
+        </div>
+
+    </body>
+</html>
