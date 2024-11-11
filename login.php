@@ -63,7 +63,7 @@
     }
     ?>
 
-    <form method="POST" action="">
+    <form method="POST" action="index.html">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" required>
 
