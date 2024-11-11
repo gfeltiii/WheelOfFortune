@@ -1,0 +1,147 @@
+.homepage {
+    background-image: url(imgs/bbackground.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgb(0, 0, 81);
+}
+
+.trophy {
+    height: 65px;
+    width: auto;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.trophy:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.wheel {
+    height: 465px;
+    width: auto;
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+        /* Original size */
+    }
+
+    30% {
+        transform: scale(1.1);
+        /* Slightly larger */
+    }
+
+    50% {
+        transform: scale(1);
+        /* Back to original size */
+    }
+
+    70% {
+        transform: scale(1.05);
+        /* Slightly larger again */
+    }
+
+    100% {
+        transform: scale(1);
+        /* Back to original size */
+    }
+}
+
+.wheel-container {
+    text-align: center;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+.button {
+    background-color: rgb(64, 156, 254);
+    width: 20%;
+    height: auto;
+    margin: 10px auto;
+    padding: 10px;
+    text-align: center;
+    border-radius: 16px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background-color: rgb(0, 0, 81);
+}
+
+.leaderboard-page {
+    background-image: url(imgs/bbackground.jpg);
+    display: flex;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgb(0, 0, 81);
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    height: 100vh; /* Ensures the body takes up the full height of the viewport */
+    margin: 0; /* Removes default body margin */
+}
+
+.leaderboard-container {
+    text-align: center; /* Centers text inside the container (optional) */
+    width: 70%; /* Optional: Sets a specific width */
+    background-color: rgb(64, 156, 254); 
+    padding: 20px; /* Optional: Adds space inside the container */
+    border-radius: 10px; /* Optional: Rounds the corners */
+}
+
+.item {
+    background-color: white; /* Sets background color */
+    padding: 10px 20px; /* Adds padding for a rounded rectangle look */
+    border-radius: 15px; /* Makes the corners rounded */
+    margin: 10px 0; /* Adds space above and below the item */
+    text-align: center; /* Centers the text inside */
+    font-weight: bold; /* Optional: Makes the text bold */
+    color: rgb(0, 0, 81); /* Sets the text color to match the theme */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Adds a subtle shadow */
+    width: auto; /* Ensures the width fits the content */
+    margin-left: auto; /* Centers horizontally */
+    margin-right: auto; /* Centers horizontally */
+}
+
+.top5 {
+    font-weight: bold;
+    font-size: 24pt;
+    color: rgb(0, 0, 81);
+}
+
+.rules-page {
+    background-image: url(imgs/bbackground.jpg);
+    display: flex;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgb(0, 0, 81);
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    height: 100vh; /* Ensures the body takes up the full height of the viewport */
+    margin: 0;
+}
+
+.rules-container {
+    width: 90%; /* Optional: Sets a specific width */
+    background-color: rgb(64, 156, 254); 
+    padding: 20px; /* Optional: Adds space inside the container */
+    border-radius: 10px;
+    color: white;
+    margin: 40px;
+}
