@@ -6,6 +6,12 @@
     max-width: 100%;
     background-color: #02375a;
 }
+body{
+  background-image: url("./img/neon-colour-illuminated-game-show-260nw-2276021853.jpg.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
 .letterBox > img {
     flex-wrap: nowrap;
     max-width: 2.6vw;
@@ -18,7 +24,7 @@
 }
 .bottomHalf {
     display: grid;
-    margin-top: 5%;
+    margin-top: 1vw;
     grid-template-columns: auto auto auto auto auto;
     max-width: 100% ;
     justify-self: center;
@@ -121,6 +127,31 @@
     animation-name: clueDissapear;
     animation-fill-mode: forwards;
     z-index: 100;
+  }
+  .message {
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    top:10px;
+    text-justify: 100%;
+    animation-name: messageD;
+    animation-fill-mode: forwards;
+    animation-duration: 4s;
+    background-color: #385c7e;
+    border-radius: 15px;
+    border: 4px solid black;
+  }
+  @keyframes messageD {
+    0%{
+      opacity: 1;
+    }
+    50%{
+      opacity: 1;
+    }
+    100%{
+      opacity: 0;
+    }
+    
   }
   
 
