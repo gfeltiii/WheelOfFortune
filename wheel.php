@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Define the wheel options
 $wheel_values = [
     "$100", "$200", "$300", "$400", "$500", "$600", "$700",
@@ -12,7 +13,7 @@ $rotation_degrees = 0;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Randomly pick a value
     $selected_value = $wheel_values[array_rand($wheel_values)];
-    $_SESSION['spinMoney']=$selectedValue;
+    $_SESSION['spinMoney']= $selected_value;
     // Random rotation degrees (e.g., full spin + random degree)
     $rotation_degrees = rand(720, 1080);  // Random spin degrees between 720 and 1080
 }
@@ -45,10 +46,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <li>$2000</li>
             <li>$2500</li>
         </ul>
+        <?php if(!$selected_value){?>
         <button type="button"></button>
         <form method="POST">
             <button type="submit" class="spin">Spin the wheel!</button>
         </form>
+        <?php }else{?>
+        <button type="button"></button>
+            <form action="board.php">
+            <a href="board.php"><button class="spin">Continue</button></a>
+            </form>
+            <?php }?>
     </div>
     <div class="blink"><span class="dots dot1"></span></div>
     <div class="blink2"><span class="dots dot2"></span></div>
@@ -61,6 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="result">
         <?php if ($selected_value) { echo "You landed on: <span style='color: red;'>$selected_value</span>"; } ?>
     </div>
-    <audio src="wheelspin.mp3" autoplay></audio>
+    <audio src="WOFtheme.mp3" autoplay></audio>
 </body>
 </html>

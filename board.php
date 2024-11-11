@@ -1,11 +1,19 @@
 <?php
 session_start();
 $money=0;
+$_SESSION['players']=array("p","p","p");
+if(isset($_SESSION["clue"])==false || $_SESSION["clue"]==""){
+  $clueset = explode("\n",file_get_contents("./clues.txt"));
+  $c=$clueset[rand(0,count($clueset)-1)];
+  $_SESSION['clue'] = explode(" ",explode("/",$c)[0]);
+  $_SESSION['cluetext'] = explode("/",$c)[1];
+  $_SESSION["lettersGuessed"] =array_diff($_SESSION['lettersGuessed'],$_SESSION['lettersGuessed']);
+}
 if (!isset($_SESSION["spinMoney"])){
-  $_SESSION["spinMoney"] = "0";
+  $_SESSION["spinMoney"] = "$0";
 }
 else{
-  if($_SESSION['spinMoney']=='bankrupt'){
+  if($_SESSION['spinMoney']=='Bankrupt'){
     $money=-1;
   }else{
     $money = intval(substr($_SESSION['spinMoney'],1));
@@ -22,7 +30,7 @@ if (isset($_SESSION["gameMoney1"])==false){
   $_SESSION["gameMoney1"]= $_SESSION["gameMoney2"]= $_SESSION["gameMoney3"]= $_SESSION["roundMoney1"]=$_SESSION["roundMoney2"]= $_SESSION["roundMoney3"]=0;
 }
 if (isset($_SESSION['players'])==false){
-    $_SESSION['players'] = array("p","e","m");
+    $_SESSION['players'] = array("p","p","p");
     $_SESSION['turn']=0;
 }
 if (isset($_SESSION["lettersGuessed"])==false){
@@ -30,8 +38,6 @@ if (isset($_SESSION["lettersGuessed"])==false){
 }
 $consonants = array("q","j","z","x","v","k","w","y","f","b","g","h","m","p","d","c","l","s","n","t","r");
 
-$clue = array("s","t","r","a","w","b","e","r","r","i","e","s","|","a","n","d","_","c","r","e","a","m");
-$cluetext = "strawberries and cream";
 if ($_SESSION['players'][$_SESSION['turn']]=="e"){
   foreach ($consonants as $l){
     if (in_array($l,$_SESSION["lettersGuessed"])==false){
@@ -52,7 +58,6 @@ if (isset($_POST['guess']) && $_POST['guess']!='?'){
       $_SESSION["lettersGuessed"][] = $_POST['guess'];
     }
 }
-
 ?>
 <!DOCTYPE html>
 <head>
@@ -62,7 +67,8 @@ if (isset($_POST['guess']) && $_POST['guess']!='?'){
 <body>
         <div class="topHalf">
             <div class="leftSidebar">
-                Spin Money: <?php print($_SESSION['spinMoney']."$"); ?><br><br>
+                Round: <?php print($_SESSION['round']);?><br><br>
+                Spin Money: <?php print($_SESSION['spinMoney']); ?><br><br>
                 Letters Guessed:<br> <?php foreach($_SESSION['lettersGuessed'] as $key => $value) {
                  print(strtoupper($value)); 
                  if ($key!=count($_SESSION['lettersGuessed'])-1){
@@ -79,7 +85,7 @@ if (isset($_POST['guess']) && $_POST['guess']!='?'){
                  $t=34.75;
                  $j=0;  
                  $i=0;
-                 foreach ($clue as $key => $value) {
+                 foreach ($_SESSION['clue'] as $key => $value) {
                      if ($value!="_" && $value!="|") {
                         if(in_array($value,$_SESSION["lettersGuessed"])){
                           if($value == $_POST['guess']){
@@ -104,27 +110,41 @@ if (isset($_POST['guess']) && $_POST['guess']!='?'){
                  }
                  if (in_array($_POST['guess'],$consonants)){
                     if($_SESSION['turn']==0){
-                      $_SESSION['roundMoney1']+=($_SESSION['spinMoney']*$i);
+                      $_SESSION['roundMoney1']+=($money*$i);
                     }
                     if($_SESSION['turn']==1){
-                      $_SESSION['roundMoney2']+=($_SESSION['spinMoney']*$i);
+                      $_SESSION['roundMoney2']+=($money*$i);
                     }
                     if($_SESSION['turn']==2){
-                      $_SESSION['roundMoney3']+=($_SESSION['spinMoney']*$i);
+                      $_SESSION['roundMoney3']+=($money*$i);
                     }
+                 }
+                 if($i==0){
+                  $_SESSION['turn']=($_SESSION['turn']+1)%3;
                  }
                 ?>
             </div>
             <div class="rightSidebar">
-                Player 1: <?php print($_SESSION['roundMoney1']);?>$ <br>
+                <?php if($_SESSION['turn']==0)print("&#8594;");?>Player 1: <?php print($_SESSION['roundMoney1']);?>$ <br>
                 Bank: <?php print($_SESSION['gameMoney1']);?>$ <br>
-                Player 2: <?php print($_SESSION['roundMoney2']);?>$ <br>
+                <?php if($_SESSION['turn']==1)print("&#8594;");?>Player 2: <?php print($_SESSION['roundMoney2']);?>$ <br>
                 Bank: <?php print($_SESSION['gameMoney2']);?>$ <br>
-                Player 3: <?php print($_SESSION['roundMoney3']);?>$ <br>
+                <?php if($_SESSION['turn']==2)print("&#8594;");?>Player 3: <?php print($_SESSION['roundMoney3']);?>$ <br>
                 Bank: <?php print($_SESSION['gameMoney3']);?>$ <br>
             </div>
         </div>
         <?php if ($_SESSION['display']){
+          $_SESSION['spinMoney']="?";
+          if(isset($_POST['guess'])){
+            print("<div class=message><h1>There's ".$i."&nbsp;".strtoupper($_POST["guess"])."(s) in the Puzzle</h1>");
+            if(in_array($_POST['guess'], $consonants)){
+            print('<h1>Player '.$_SESSION['turn']+1 .' Earned '.($money*$i).'$</h1>');
+            }
+            if($i==0){
+              print("<h1>It is now Player ".$_SESSION['turn']+1 ."'s Turn");
+            }
+            print("</div>");
+          }
           if($_SESSION['players'][$_SESSION['turn']]=="p"){
           ?>
           <div class="bottomHalf">
@@ -145,7 +165,7 @@ if (isset($_POST['guess']) && $_POST['guess']!='?'){
         <div class="bottomHalf">
               <?php
               if ($_SESSION['players'][$_SESSION['turn']]=="p"){
-              if ($_SESSION['spinMoney']==0){
+              if ($money==0){
                 ?>
                 <div class="button-group">
                 <input type="radio" id="a" name="guess" value="a"/>
@@ -264,8 +284,7 @@ if (isset($_POST['guess']) && $_POST['guess']!='?'){
                 <input type="radio" id="z" name="guess" value="z" />
                 <label for="z">Z</label>
               </div>
-            <?php }  $_SESSION['display']=!$_SESSION['display'];}
-            ?>
+            <?php }  $_SESSION['display']=!$_SESSION['display'];}?>
         </div>
             <input type="submit">
         </form>
